@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, Black, gray); /* Gradient background */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100vw; /* Full viewport width */
+    margin-left: calc(-50vw + 50%); /* Negative margin technique */
+    position: relative;
+    top: -20px;
+    margin-right: -50vw;
+}  
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Increased font size */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Gold color on hover */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 600px; /* Ensure the table doesn't get too narrow on small screens */
+}
+
+table thead tr {
+    background-color: black;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    font-weight: bold;
+}
+
+table td {
+    vertical-align: middle;
+}
+
+/* Specific styles for name, date, time, and location columns */
+table td:nth-child(1), /* Name */
+table td:nth-child(2), /* Date */
+table td:nth-child(3), /* Time */
+table td:nth-child(4) /* Location */ {
+    font-weight: 500;
+}
+
+table td:nth-child(2), /* Date */
+table td:nth-child(3) /* Time */ {
+    white-space: nowrap;
+}
+
+
+
+table td a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+table td a:hover {
+    color: white;
+}
+
+/* Add this new style for a container around the table */
+.table-container {
+    padding: 0 20px;
+    overflow-x: auto;
+}
+
+button {
+    background-color: #ff3300;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #cc2900;
+}
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    table tr {
+        margin-bottom: 15px;
+    }
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .table-container {
+        padding: 0 10px; /* Reduce padding on smaller screens */
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Common styles for buttons */
+.btn {
+    display: inline-block;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+/* Edit button */
+
+
+a.edit-event {
+    background-color: black;
+    font-size: 16px; /* Increased font size */
+    padding: 10px 15px; /* Increased padding */
+    border-radius: 5px;
+}
+
+a.edit-event:hover {
+    background-color: #333;
+}
+
+/* Create New Event button */
+a.create-event {
+    background-color: black;
+    color: white;
+    display: inline-block; /* Changed from block to inline-block */
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Added margin at the bottom */
+    border-radius: 5px;
+    margin-right: 1200px;
+}
+
+a.create-event:hover {
+    background-color: #333;
+}
+
+/* Delete button */
+button.delete-event {
+    background-color: #ff3300;
+}
+
+button.delete-event:hover {
+    background-color: #cc2900;
+}
+
+/* Main content wrapper */
+.content-wrapper {
+    flex: 1 0 auto;
+}
+
+/* Footer Styles */
+footer {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, Black, gray); 
+    color: white;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Add some bottom padding to the body to prevent content from being hidden behind the footer */
+body {
+    padding-bottom: 60px; /* Adjust this value based on your footer's height */
+}
+
+@media (max-width: 1024px) {
+    /* Remove .event styles here */
+}
+
+@media (max-width: 768px) {
+    /* Remove .event styles here */
+}
+
+/* Add this new style for a container around the create button */
+.create-button-container {
+    text-align: left; /* Aligns the button to the left */
+}

@@ -1,0 +1,11 @@
+form[action*="update_booking"] button[type="submit"] {
+    background-color: darkblue;
+    color: white;
+    /* Add any other styles you want for the update button */
+}
+
+form[action*="delete_booking"] button[type="submit"] {
+    background-color: red;
+    color: white;
+    /* Add any other styles you want for the delete button */
+}

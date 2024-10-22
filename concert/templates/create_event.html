@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="{% static 'createevent.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'background3 (2).jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Create Event</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'recent_books' %}">Recently Booked</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'user_profile' %}">User Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% if request.user.user_type == 'Admin' %}
+                        <li><a href="{% url 'create_event' %}">Create Event</a></li>
+                        <li><a href="{% url 'manage_events' %}">Manage Events</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="create-event-form">
+            <h2>Create a New Event</h2>
+            <form method="POST" action="{% url 'create_event' %}" enctype="multipart/form-data">  <!-- Note the enctype attribute -->
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="event_name">Event Name</label>
+                    {{ form.event_name.errors }}
+                    {{ form.event_name }}
+
+                    <label for="event_date">Event Date</label>
+                    {{ form.event_date.errors }}
+                    {{ form.event_date }}
+
+                    <label for="event_time">Event Time</label>
+                    {{ form.event_time.errors }}
+                    {{ form.event_time }}
+
+                    <label for="event_location">Event Location</label>
+                    {{ form.event_location.errors }}
+                    {{ form.event_location }}
+
+                    <label for="event_description">Event Description</label>
+                    {{ form.event_description.errors }}
+                    {{ form.event_description }}
+
+                    <label for="event_poster">Event Poster</label>  <!-- New field for uploading poster -->
+                    {{ form.event_poster.errors }}
+                    {{ form.event_poster }}
+                </div>
+                <br><br>
+                <button type="submit" class="btn-submit">Create Event</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Mahkota Music Concert. All rights reserved.</p>
+    </footer>
+</body>
+</html>

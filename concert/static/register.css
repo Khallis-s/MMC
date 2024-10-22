@@ -1,0 +1,135 @@
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('{% static "background2.jpg" %}') no-repeat center center fixed;
+    background: linear-gradient(to right, #ff9a9e, #fecfef); /* Gradient background */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container for the form */
+form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form header */
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Header logo and text at top left */
+.header-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Input fields */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+    color: #555;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #66d3c0;
+    outline: none;
+}
+
+/* Submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: black;
+}
+
+/* Link for logging in */
+p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+        padding: 30px;
+    }
+    
+    .header-logo img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-logo span {
+        font-size: 20px;
+    }
+}

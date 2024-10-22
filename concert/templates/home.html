@@ -1,0 +1,84 @@
+<!-- home.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMC - Home</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'background3 (2).jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MMC</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'recent_books' %}">Recently Booked</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'user_profile' %}">User Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% if request.user.user_type == 'Admin' %}
+                        <li><a href="{% url 'create_event' %}">Create Event</a></li>
+                        <li><a href="{% url 'manage_events' %}">Manage Events</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div>
+            {% if request.session.user_name %}
+                <p>Welcome, {{ request.session.user_name }}!</p>
+                <p>Your email: {{ request.session.user_email }}</p>
+            {% else %}
+                <p>Welcome, Guest!</p>
+            {% endif %}
+        </div>
+    </header>
+    <br>
+    <form method="get" action="{% url 'home' %}" class="search-form">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search events..." class="search-input">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <main>
+        <h2>MMC CONCERT</h2>
+        <div class="event-container">
+            {% for event in events %}
+                <div class="event-card">
+                    {% if event.event_poster %}
+                        <img src="{{ event.event_poster.url }}" alt="Event Poster" class="event-poster">
+                    {% endif %}
+                    <h3 class="event-name">{{ event.event_name }}</h3>
+                    <p class="event-details">Venue: {{ event.event_location }}</p>
+                    <p class="event-details">Date: {{ event.event_date|date:"d M Y" }}</p>
+                    <p class="event-details">Time: {{ event.event_time|time:"H:i" }}</p>
+                    {% if event.event_description %}
+                        <p class="event-description">{{ event.event_description|truncatewords:20 }}</p>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'book_ticket' event.event_id %}" class="book-now-btn">Book Now</a>
+                    {% else %}
+                        <a href="{% url 'login' %}?next={% url 'book_ticket' event.event_id %}" class="book-now-btn">Book Now</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No events available at the moment.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Mahkota Music Concert. All rights reserved.</p>
+    </footer>
+</body>
+</html>

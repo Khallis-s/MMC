@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Bookings</title>
+    <link rel="stylesheet" href="{% static 'recentbooks.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'background3 (2).jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recent Bookings</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    {% if recent_bookings %}
+    <ul>
+        {% for booking in recent_bookings %}
+            <li>
+                <strong>Event:</strong> {{ booking.event_id.event_name }}<br>
+                <strong>Ticket Type:</strong> {{ booking.ticket_id.ticket_type }}<br>
+                <strong>Booking Date:</strong> {{ booking.booking_date|date:"F j, Y, g:i a" }}<br>
+                <strong>Ticket Price:</strong> RM {{ booking.ticket_id.ticket_price }}<br>
+                <strong>Name:</strong> {{ booking.user_id.username }}<br>
+                <strong>Quantity:</strong> {{ booking.quantity }}<br>
+
+                <!-- Update and Delete buttons with correct booking ID passed -->
+                <a href="{% url 'update_booking' booking.book_id %}">Edit</a> | 
+                <a href="{% url 'delete_booking' booking.book_id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No recent bookings available.</p>
+    {% endif %}
+</body>
+</html>

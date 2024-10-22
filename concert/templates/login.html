@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'logins.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'background2.jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-logo">
+        <span>MMC</span>
+    </div>
+    
+    <form method="POST">
+        <h1>Login</h1>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <label for="id_username">Username</label>
+        {{ form.username }}
+
+        <label for="id_password">Password</label>
+        {{ form.password }}
+
+        <button type="submit">Login</button>
+
+        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    </form>
+</body>
+</html>

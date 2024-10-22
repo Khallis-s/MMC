@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'lalala.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'background3 (2).jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Update Booking</h1>
+        <form method="POST">
+            {% csrf_token %} 
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" value="{{ booking.quantity }}" required>
+
+            <label for="ticket_type">Ticket Type:</label>
+            <select name="ticket_type" id="ticket_type">
+                <option value="VIP" {% if booking.ticket_id.ticket_type == 'VIP' %}selected{% endif %}>VIP</option>
+                <option value="Standard" {% if booking.ticket_id.ticket_type == 'Standard' %}selected{% endif %}>Standard</option>
+            </select>
+
+            <button type="submit">Update Booking</button>
+        </form>
+        <a href="{% url 'recent_books' %}" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html>
